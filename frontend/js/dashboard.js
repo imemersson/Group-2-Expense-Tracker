@@ -162,9 +162,14 @@ function renderBudgets(budgets, containerId) {
     card.innerHTML = `
       <div class="budget-card-header">
         <h4>${b.category}</h4>
-        <button class="edit-budget-btn" onclick="editBudget('${b._id}', '${b.category}', ${allocated})">
-          <i class="fas fa-pencil"></i>
-        </button>
+        <div class="budget-card-actions">
+          <button class="edit-budget-btn" onclick="editBudget('${b._id}', '${b.category}', ${allocated})" title="Edit budget">
+            <i class="fas fa-pencil"></i>
+          </button>
+          <button class="delete-budget-btn" onclick="deleteBudget('${b._id}')" title="Delete budget">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
       </div>
 
       <div class="budget-info">

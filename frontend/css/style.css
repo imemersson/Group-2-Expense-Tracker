@@ -379,6 +379,11 @@ body {
     margin-bottom: 16px;
 }
 
+.budget-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
 .budget-card h4 {
     font-size: 18px;
     font-weight: bold;
@@ -397,6 +402,20 @@ body {
 
 .edit-budget-btn:hover {
     background-color: #DBEAFE;
+}
+
+.delete-budget-btn {
+    background-color: #FEF2F2;
+    color: var(--danger-red);
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-budget-btn:hover {
+    background-color: #FEE2E2;
 }
 
 .budget-info {

@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const Budget = require("../models/Budget");
 const auth = require("../middleware/auth");
@@ -46,6 +47,22 @@ router.put("/:id", async (req, res) => {
   }
   const saved = await budget.save();
   res.json(saved);
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid budget id" });
+    }
+
+    const deleted = await Budget.findOneAndDelete({ _id: id, userId: req.user.id });
+    if (!deleted) return res.status(404).json({ message: "Budget not found" });
+
+    res.json({ message: "Budget deleted" });
+  } catch (e) {
+    res.status(500).json({ message: e.message || "Failed to delete budget" });
+  }
 });
 
 module.exports = router;

@@ -485,6 +485,26 @@ window.deleteTransaction = async function (id) {
   window.loadDashboard();
 };
 
+window.deleteBudget = async function (id) {
+  if (!confirm("Delete budget?")) return;
+
+  const res = await fetch(`${API_URL}/budgets/${id}`, {
+    method: "DELETE",
+    headers: authHeaders()
+  });
+
+  let out = {};
+  try {
+    out = await res.json();
+  } catch {
+    out = {};
+  }
+  if (!res.ok) return alert(out.message || "Failed to delete budget");
+
+  if (typeof window.loadManageBudgetPage === "function") await window.loadManageBudgetPage();
+  if (typeof window.loadDashboard === "function") await window.loadDashboard();
+};
+
 // Export CSV
 document.getElementById("exportData").addEventListener("click", async () => {
   const res = await fetch(`${API_URL}/transactions`, { headers: authHeaders() });
