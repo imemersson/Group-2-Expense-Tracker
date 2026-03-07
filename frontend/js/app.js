@@ -364,7 +364,10 @@ document.getElementById("profilePictureForm")?.addEventListener("submit", async 
     });
 
     const out = await res.json();
-    if (!res.ok) return showProfileMessage(out.message || "Failed to upload picture.", true);
+    if (!res.ok) {
+      const detailedMessage = out.error || out.message || "Failed to upload picture.";
+      return showProfileMessage(detailedMessage, true);
+    }
 
     const image = out.user?.profileImage || "";
     setProfileAvatar(image);

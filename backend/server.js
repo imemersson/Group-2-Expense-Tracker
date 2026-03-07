@@ -18,9 +18,43 @@ if (missingEnv.length > 0) {
   process.exit(1);
 }
 
-const allowedOrigin = process.env.CORS_ORIGIN || process.env.FRONTEND_URL || true;
+function buildAllowedOrigins() {
+  const raw = [process.env.CORS_ORIGIN, process.env.FRONTEND_URL]
+    .filter(Boolean)
+    .join(",");
 
-app.use(cors({ origin: allowedOrigin, credentials: false }));
+  if (!raw) {
+    return [];
+  }
+
+  const origins = raw
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  const expanded = new Set();
+  for (const origin of origins) {
+    expanded.add(origin);
+    expanded.add(origin.replace("127.0.0.1", "localhost"));
+    expanded.add(origin.replace("localhost", "127.0.0.1"));
+  }
+
+  return [...expanded];
+}
+
+const allowedOrigins = buildAllowedOrigins();
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: false
+  })
+);
 app.use(express.json({ limit: "5mb" }));
 app.use(
   helmet({
