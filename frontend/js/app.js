@@ -102,13 +102,23 @@ window.authHeaders = function (extra = {}) {
   return { ...extra, Authorization: `Bearer ${localStorage.getItem("token")}` };
 };
 
-// Logout
-document.querySelector(".menu-item.logout").addEventListener("click", () => {
-  if (!confirm("Logout?")) return;
+function logoutUser() {
   localStorage.removeItem("token");
   localStorage.removeItem("userName");
   localStorage.removeItem("userProfileImage");
   window.location.href = "index.html";
+}
+
+// Logout
+document.querySelector(".menu-item.logout")?.addEventListener("click", () => {
+  if (!confirm("Logout?")) return;
+  logoutUser();
+});
+
+document.getElementById("profileLogoutBtn")?.addEventListener("click", () => {
+  if (!confirm("Logout?")) return;
+  window.closeModal("profile");
+  logoutUser();
 });
 
 // Navigation

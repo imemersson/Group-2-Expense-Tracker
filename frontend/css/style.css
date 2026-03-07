@@ -1224,3 +1224,248 @@ tbody tr:hover {
         align-items: flex-start;
     }
 }
+
+/* Mobile support overrides */
+@media (max-width: 1024px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        height: auto;
+        min-height: 100%;
+        overflow: auto;
+    }
+
+    .top-nav {
+        height: 60px;
+    }
+
+    .nav-container {
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .user-profile {
+        padding: 6px 10px;
+    }
+
+    .user-profile span {
+        display: none;
+    }
+
+    .main-container {
+        display: block;
+        padding-top: 60px;
+        height: auto;
+        min-height: calc(100dvh - 60px);
+        overflow: visible;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 72px;
+        border-right: none;
+        border-top: 1px solid rgba(191, 209, 228, 0.72);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        overflow: hidden;
+        z-index: 120;
+    }
+
+    .menu,
+    .menu-bottom {
+        display: grid;
+        align-items: stretch;
+        gap: 2px;
+        padding: 6px 4px;
+        margin: 0;
+    }
+
+    .menu {
+        flex: 2 1 0;
+        min-width: 0;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .menu-bottom {
+        flex: 0 0 auto;
+        grid-template-columns: 1fr;
+        border-top: none;
+        border-left: 1px solid rgba(191, 209, 228, 0.72);
+        padding-left: 4px;
+    }
+
+    .menu-item {
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 8px 6px;
+        border-radius: 10px;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .menu-item i {
+        width: auto;
+        font-size: 18px;
+    }
+
+    .menu-item span {
+        display: none;
+    }
+
+    .menu-item.active::before {
+        display: none;
+    }
+
+    .menu-item:hover {
+        transform: none;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 16px 12px calc(88px + env(safe-area-inset-bottom));
+        height: auto;
+        min-height: calc(100dvh - 60px);
+        overflow: visible;
+    }
+
+    .page-header {
+        margin-bottom: 18px;
+    }
+
+    .page-header h2 {
+        font-size: 22px;
+    }
+
+    .action-buttons,
+    .section-header {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-cards,
+    .charts-section,
+    .budget-cards,
+    .categories-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .summary-card .amount {
+        font-size: 28px;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-content {
+        width: min(96vw, 520px);
+        max-height: calc(100dvh - 24px);
+        overflow-y: auto;
+        margin: 0;
+    }
+
+    .modal form {
+        padding: 16px;
+    }
+
+    .profile-preview-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-nav {
+        height: 56px;
+    }
+
+    .nav-container {
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .main-container {
+        padding-top: 56px;
+        min-height: calc(100dvh - 56px);
+    }
+
+    .content {
+        padding: 14px 10px calc(86px + env(safe-area-inset-bottom));
+        min-height: calc(100dvh - 56px);
+    }
+
+    .page-header h2 {
+        font-size: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 14px;
+    }
+
+    .menu,
+    .menu-bottom {
+        gap: 1px;
+        padding: 4px 2px;
+    }
+
+    .menu-item {
+        padding: 7px 4px;
+    }
+
+    .menu-item i {
+        font-size: 17px;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
