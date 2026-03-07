@@ -43,4 +43,3 @@ npm run dev
 
 ## Milestone 2 Documents
 - Integration plan: `docs/milestone-2-integration-plan.md`
-- Basic testing results template: `docs/basic-testing-results.md`
